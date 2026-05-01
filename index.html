@@ -114,6 +114,10 @@
     color: var(--silver); text-transform: uppercase;
     margin-bottom: 28px; margin-top: 8px;
   }
+  .hero-service-note {
+    font-size: 13px; font-weight: 300; line-height: 1.7;
+    color: #888; max-width: 460px; margin-bottom: 20px; margin-top: -16px;
+  }
   .hero-desc {
     font-size: 15px; font-weight: 300; line-height: 1.8;
     color: #999; max-width: 480px; margin-bottom: 44px;
@@ -305,30 +309,56 @@
     font-size: 13px; font-weight: 300; line-height: 1.7; color: #777;
   }
 
-  /* ─── PROCESS ─── */
-  #process { padding: 120px 60px; }
-  .process-steps {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 0; position: relative; margin-top: 72px;
+  /* ─── PHOTO EVAL ─── */
+  #evaluate { padding: 120px 60px; }
+  .evaluate-inner {
+    max-width: 760px; margin: 0 auto; text-align: center;
   }
-  .process-steps::before {
-    content: ''; position: absolute;
-    top: 36px; left: 12.5%; right: 12.5%;
-    height: 1px; background: linear-gradient(90deg, var(--red), var(--silver), var(--red));
-  }
-  .step { text-align: center; padding: 0 24px; }
-  .step-num {
-    width: 72px; height: 72px; border-radius: 50%;
-    background: var(--dark3); border: 2px solid var(--red);
+  .evaluate-icon {
+    width: 72px; height: 72px; margin: 0 auto 32px;
+    background: rgba(204,20,20,0.1); border: 1px solid rgba(204,20,20,0.3);
     display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 28px;
-    font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--red);
+    font-size: 30px;
   }
-  .step-title {
+  .evaluate-inner h2 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px; letter-spacing: 2px; color: #fff; margin-bottom: 12px;
+    font-size: clamp(36px, 5vw, 56px);
+    letter-spacing: 2px; color: #fff; margin-bottom: 20px;
   }
-  .step-desc { font-size: 13px; font-weight: 300; line-height: 1.7; color: #777; }
+  .evaluate-inner h2 span { color: var(--red); }
+  .evaluate-desc {
+    font-size: 15px; font-weight: 300; line-height: 1.9;
+    color: #888; max-width: 580px; margin: 0 auto 40px;
+  }
+  .evaluate-steps {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-bottom: 48px; text-align: left;
+  }
+  .eval-step {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 28px 24px;
+    border-top: 2px solid var(--red);
+  }
+  .eval-step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; color: rgba(204,20,20,0.3);
+    line-height: 1; margin-bottom: 12px;
+  }
+  .eval-step-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: #fff; margin-bottom: 8px;
+  }
+  .eval-step-desc { font-size: 12px; font-weight: 300; color: #777; line-height: 1.7; }
+  .evaluate-cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: #888;
+  }
+  .evaluate-cta span { color: var(--silver); }
 
   /* ─── CTA ─── */
   #cta {
@@ -522,15 +552,13 @@
     .about-card { width: 90%; }
     .about-card-accent { right: 0; bottom: -20px; }
     .services-grid { grid-template-columns: 1fr 1fr; padding: 0 24px; }
-    #services, #process { padding: 80px 24px; }
-    .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .process-steps::before { display: none; }
+    #services, #evaluate { padding: 80px 24px; }
+    .evaluate-steps { grid-template-columns: 1fr; }
     #cta { margin: 0 24px 80px; padding: 48px 32px; flex-direction: column; }
     footer { padding: 32px 24px; flex-direction: column; text-align: center; }
   }
   @media (max-width: 600px) {
     .services-grid { grid-template-columns: 1fr; }
-    .process-steps { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
   }
 </style>
@@ -543,7 +571,7 @@
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#process">Process</a></li>
+    <li><a href="#evaluate">Evaluate</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#contact" class="nav-cta">Book Now</a></li>
   </ul>
@@ -556,7 +584,7 @@
 <div class="nav-mobile" id="mobile-menu">
   <a href="#about"    class="mobile-link">About</a>
   <a href="#services" class="mobile-link">Services</a>
-  <a href="#process"  class="mobile-link">Process</a>
+  <a href="#evaluate" class="mobile-link">Evaluate</a>
   <a href="#contact"  class="mobile-link">Contact</a>
   <a href="#contact"  class="mobile-link nav-cta">Book Now</a>
 </div>
@@ -583,15 +611,16 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-badge">Leather & Vinyl Specialist</div>
+   
     <h1>
       <span class="red">UNCLE</span><br>
       <span class="silver">H</span> INTERIOR<br>
-      REPAIR
+      Specialist
     </h1>
-    <p class="hero-sub">Mobile Service · We Come To You</p>
+    <p class="hero-sub">Flexible Service Options — Mobile or In-House</p>
+    <p class="hero-service-note">We offer both convenient mobile service at your location and the option to host your vehicle at our workspace for more detailed repairs.</p>
     <p class="hero-desc">
-      Decades of European craftsmanship brought to your door. We repair, restore, refinish, and renew your vehicle's interior — by appointment only.
+      Decades of European craftsmanship, delivered with precision and care. We specialize in repairing, restoring, refinishing, and renewing your vehicle’s interior — exclusively by appointment.
     </p>
     <div class="hero-btns">
       <a href="#contact" class="btn-primary">Book Appointment</a>
@@ -602,10 +631,6 @@
     <div class="stat">
       <span class="stat-num">4<span>R</span></span>
       <span class="stat-label">Repair · Restore<br>Refinish · Renew</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">100<span>%</span></span>
-      <span class="stat-label">Mobile<br>Service</span>
     </div>
     <div class="stat">
       <span class="stat-num">10<span>+</span></span>
@@ -639,25 +664,13 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-visual">
-    <div class="about-card about-card-main">
-      <div class="card-icon">🛠️</div>
-      <div class="card-title">European Craftsmanship</div>
-      <p class="card-body">Our family has mastered leather and vinyl work across decades in Europe, developing proven techniques that deliver showroom-quality results every time.</p>
-    </div>
-    <div class="about-card about-card-accent">
-      <div class="accent-label">Led By</div>
-      <div class="accent-val">KEEM</div>
-      <p class="card-body" style="font-size:13px;margin-top:8px;">First generation leading the U.S. expansion of Uncle H.</p>
-    </div>
-  </div>
   <div class="about-text">
     <div class="section-label">Our Story</div>
     <h2>A FAMILY<br><span>LEGACY</span></h2>
-    <p>At Uncle H Interior Repair, our journey is rooted in <strong>decades of experience</strong> and a deep family passion for craftsmanship developed across Europe.</p>
-    <p>Expanding into the United States has long been a vision, and today — led by <strong>Keem</strong>, first generation of this expansion — that vision is a reality. We bring proven techniques, attention to detail, and a commitment to quality to every job.</p>
+    <p>At Uncle H Interior Specialist, our journey is rooted in <strong>decades of experience</strong> and a deep family passion for craftsmanship developed across Europe.</p>
+    <p>Expanding into the United States has long been a vision, and today — led by <strong>Amad</strong>, first generation of this expansion — that vision is a reality. We bring proven techniques, attention to detail, and a commitment to quality to every job.</p>
     <ul class="about-list">
-      <li>Mobile service — we come directly to you</li>
+      <li>Mobile services or by appointment at our location</li>
       <li>By appointment only for focused, premium care</li>
       <li>Custom color matching on every repair</li>
       <li>All makes, models, and interior types</li>
@@ -723,33 +736,30 @@
   </div>
 </section>
 
-<!-- PROCESS -->
-<section id="process">
-  <div class="section-header">
-    <span class="section-label">How It Works</span>
-    <h2>THE <span>PROCESS</span></h2>
-  </div>
-  <div class="process-steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-title">Book Appointment</div>
-      <p class="step-desc">Contact us by phone, email, or the form below to schedule your service at a time that works for you.</p>
+<!-- EVALUATE -->
+<section id="evaluate">
+  <div class="evaluate-inner">
+    <div class="evaluate-icon">📸</div>
+    <h2>SHARE YOUR <span>PHOTOS</span></h2>
+    <p class="evaluate-desc">Share photos of the areas you'd like restored or repaired, and we'll evaluate the condition and provide expert recommendations — before you commit to anything.</p>
+    <div class="evaluate-steps">
+      <div class="eval-step">
+        <div class="eval-step-num">01</div>
+        <div class="eval-step-title">Take a Photo</div>
+        <p class="eval-step-desc">Capture clear, close-up shots of the damaged or worn area — seats, dash, door panels, or any surface.</p>
+      </div>
+      <div class="eval-step">
+        <div class="eval-step-num">02</div>
+        <div class="eval-step-title">Send It To Us</div>
+        <p class="eval-step-desc">Send your photos via email or WhatsApp. No need to bring the car in — we assess remotely.</p>
+      </div>
+      <div class="eval-step">
+        <div class="eval-step-num">03</div>
+        <div class="eval-step-title">Get a Recommendation</div>
+        <p class="eval-step-desc">We'll review the damage, explain what can be done, and give you an honest expert opinion with no obligation.</p>
+      </div>
     </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-title">We Come To You</div>
-      <p class="step-desc">Our mobile unit arrives at your home, office, or preferred location — no need to drop your car off.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-title">Inspect & Assess</div>
-      <p class="step-desc">We evaluate the damage and walk you through our recommended repair plan and expected results.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-title">Restore & Deliver</div>
-      <p class="step-desc">We perform the repair with precision and leave your interior looking pristine — right on the spot.</p>
-    </div>
+    <p class="evaluate-cta">Ready? &nbsp;<span>→ Scroll down to contact us</span></p>
   </div>
 </section>
 
@@ -757,7 +767,7 @@
 <section id="cta">
   <div class="cta-text">
     <h2>READY TO <span>RESTORE</span>?</h2>
-    <p>Mobile service, by appointment only. We come to your location anywhere in the area. Get in touch today for a free quote.</p>
+   
   </div>
   <div class="cta-actions">
     <a href="tel:6501234567" class="cta-phone">(650) 123-4567</a>
@@ -770,7 +780,7 @@
   <div class="contact-info">
     <div class="section-label">Get In Touch</div>
     <h2>BOOK YOUR<br><span>SERVICE</span></h2>
-    <p>Fill out the form or reach us directly. We'll confirm your appointment and come to you — fully equipped and ready to work.</p>
+    <p>Complete the form or contact us directly, and we’ll be in touch to discuss the next steps.</p>
     <div class="contact-items">
       <div class="contact-item">
         <div class="ci-icon">📞</div>
